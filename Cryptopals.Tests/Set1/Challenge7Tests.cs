@@ -11,7 +11,7 @@ namespace Cryptopals.Tests.Set1
             string cipherText = Properties.Resources.challenge7.Replace("\n", string.Empty);
             string expected = "I'm back and I'm ringin' the bell"; // If you can read that, the rest of it is correct
 
-            string actual = Challenge7.SolveChallenge(cipherText, "YELLOW SUBMARINE").Substring(0, expected.Length);
+            string actual = new Challenge7().SolveChallenge(cipherText, "YELLOW SUBMARINE").Substring(0, expected.Length);
 
             Assert.Equal(expected, actual);
         }

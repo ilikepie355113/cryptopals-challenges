@@ -2,9 +2,9 @@
 
 namespace Cryptopals.Challenges.Set1
 {
-    public static class Challenge6
+    public class Challenge6
     {
-        public static string SolveChallenge(string input)
+        public string SolveChallenge(string input)
         {
             CipherText cipherText = new CipherText(input, CipherTextFormat.BASE64);
 

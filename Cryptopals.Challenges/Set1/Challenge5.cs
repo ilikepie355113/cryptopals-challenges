@@ -2,9 +2,9 @@
 
 namespace Cryptopals.Challenges.Set1
 {
-    public static class Challenge5
+    public class Challenge5
     {
-        public static string SolveChallenge(string input)
+        public string SolveChallenge(string input)
         {
             PlainText plainText = new PlainText(input);
             return plainText.Encrypt(new VigenereEncrypt(), "ICE");

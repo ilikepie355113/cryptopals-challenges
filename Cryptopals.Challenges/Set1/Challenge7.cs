@@ -4,14 +4,14 @@ using Cryptopals.Utils;
 
 namespace Cryptopals.Challenges.Set1
 {
-    public static class Challenge7
+    public class Challenge7
     {
-        public static  string SolveChallenge(string input, string key)
+        public string SolveChallenge(string input, string key)
         {
             return AESDecrypt(input, key);
         }
 
-        private static string AESDecrypt(string cipherText, string key)
+        private string AESDecrypt(string cipherText, string key)
         {
             byte[] cipherBytes = Convert.FromBase64String(cipherText);
             byte[] output = new byte[cipherText.Length];

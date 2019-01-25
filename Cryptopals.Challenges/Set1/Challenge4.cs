@@ -4,9 +4,9 @@ using Cryptopals.Utils;
 
 namespace Cryptopals.Challenges.Set1
 {
-    public static class Challenge4
+    public class Challenge4
     {
-        public static string SolveChallenge(List<string> ciphers)
+        public string SolveChallenge(List<string> ciphers)
         {
             var decipheredTexts = new List<DecipherText>();
 
