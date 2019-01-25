@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptopals.Challenges", "Cryptopals.Challenges\Cryptopals.Challenges.csproj", "{4400B24E-52E4-4E6B-8586-CFED47EF76FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptopals.Tests", "Cryptopals.Tests\Cryptopals.Tests.csproj", "{BD63D761-BF91-4CEE-8336-BA1B26866668}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptopals.Utils", "Cryptopals.Utils\Cryptopals.Utils.csproj", "{68DE6977-B74B-4B91-A2C1-6238F63B491C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4400B24E-52E4-4E6B-8586-CFED47EF76FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4400B24E-52E4-4E6B-8586-CFED47EF76FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4400B24E-52E4-4E6B-8586-CFED47EF76FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD63D761-BF91-4CEE-8336-BA1B26866668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD63D761-BF91-4CEE-8336-BA1B26866668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD63D761-BF91-4CEE-8336-BA1B26866668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD63D761-BF91-4CEE-8336-BA1B26866668}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DE6977-B74B-4B91-A2C1-6238F63B491C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DE6977-B74B-4B91-A2C1-6238F63B491C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DE6977-B74B-4B91-A2C1-6238F63B491C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DE6977-B74B-4B91-A2C1-6238F63B491C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

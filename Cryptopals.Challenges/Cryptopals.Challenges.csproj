@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Cryptopals.Challenges.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,9 +48,46 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Set1\Challenge1.cs" />
+    <Compile Include="Set1\Challenge2.cs" />
+    <Compile Include="Set1\Challenge3.cs" />
+    <Compile Include="Set1\Challenge4.cs" />
+    <Compile Include="Set1\Challenge5.cs" />
+    <Compile Include="Set1\Challenge6.cs" />
+    <Compile Include="Set1\Challenge7.cs" />
+    <Compile Include="Set1\Challenge8.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cryptopals.Utils\Cryptopals.Utils.csproj">
+      <Project>{68de6977-b74b-4b91-a2c1-6238f63b491c}</Project>
+      <Name>Cryptopals.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\challenge4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\challenge6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\challenge7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\challenge8.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
