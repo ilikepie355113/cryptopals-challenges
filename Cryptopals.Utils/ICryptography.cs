@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Cryptopals.Utils
 {
-    public interface IEncryptor
+    public interface ICryptography
     {
         string Encrypt(PlainText text, string key, CipherTextFormat format);
+        string Decrypt(CipherText cipherText, string key);
     }
 }
