@@ -5,9 +5,16 @@ namespace Cryptopals.Challenges.Set1
 {
     public class Challenge1
     {
-        public string SolveChallenge(string input)
+        private readonly string _hexString;
+
+        public Challenge1(string hexString)
         {
-            return Convert.ToBase64String(input.HexToBytes());
+            _hexString = hexString;
+        }
+
+        public string SolveChallenge()
+        {
+            return Convert.ToBase64String(_hexString.HexToBytes());
         }
     }
 }

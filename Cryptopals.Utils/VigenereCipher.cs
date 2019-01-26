@@ -24,7 +24,7 @@ namespace Cryptopals.Utils
             return expandedKey.XorWith(cipherText.Bytes).ToASCIIString();
         }
 
-        private static byte[] ExpandKey(byte[] key, int length)
+        private byte[] ExpandKey(byte[] key, int length)
         {
             byte[] expandedKey = new byte[length];
 

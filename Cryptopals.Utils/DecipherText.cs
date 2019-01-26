@@ -13,7 +13,7 @@ namespace Cryptopals.Utils
         public string Key { get; }
         public double Score { get; }
 
-        public DecipherText(CipherText cipherText, string key, IDecryptor decryptor)
+        public DecipherText(CipherText cipherText, string key, ICryptography decryptor)
         {
             CipherText = cipherText;
             DecipheredText = decryptor.Decrypt(cipherText, key);

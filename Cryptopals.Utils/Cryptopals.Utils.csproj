@@ -45,14 +45,12 @@
     <Compile Include="DecipherText.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FrequencyAnalysis.cs" />
-    <Compile Include="IDecryptor.cs" />
-    <Compile Include="IEncryptor.cs" />
     <Compile Include="ICracker.cs" />
+    <Compile Include="ICryptography.cs" />
     <Compile Include="PlainText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VigenereCrack.cs" />
-    <Compile Include="VigenereDecrypt.cs" />
-    <Compile Include="VigenereEncrypt.cs" />
+    <Compile Include="VigenereCipher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

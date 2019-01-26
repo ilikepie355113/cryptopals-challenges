@@ -31,7 +31,7 @@ namespace Cryptopals.Utils
             Format = format;
         }
 
-        public string Decrypt(IDecryptor decryptor, string key)
+        public string Decrypt(ICryptography decryptor, string key)
         {
             return decryptor.Decrypt(this, key);
         }

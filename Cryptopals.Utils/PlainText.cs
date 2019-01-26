@@ -17,7 +17,7 @@ namespace Cryptopals.Utils
             Bytes = text.ToByteArray();
         }
 
-        public string Encrypt(IEncryptor encryptor, string key, CipherTextFormat format = CipherTextFormat.HEXADECIMAL)
+        public string Encrypt(ICryptography encryptor, string key, CipherTextFormat format = CipherTextFormat.HEXADECIMAL)
         {
             return encryptor.Encrypt(this, key, format);
         }

@@ -5,14 +5,21 @@ namespace Cryptopals.Challenges.Set1
 {
     public class Challenge8
     {
-        public string SolveChallenge(List<string> ciphers)
+        private readonly List<string> _ciphers;
+
+        public Challenge8(List<string> ciphers)
         {
-            return FindECBCiphers(ciphers).First();
+            _ciphers = ciphers;
         }
 
-        public List<string> FindECBCiphers(List<string> ciphers)
+        public string SolveChallenge()
         {
-            return ciphers.Where(x => ContainsDupeBlocks(GetBlocks(x))).ToList();
+            return FindECBCiphers().First(); // challenge only contains 1, so just return first
+        }
+
+        public List<string> FindECBCiphers()
+        {
+            return _ciphers.Where(x => ContainsDupeBlocks(GetBlocks(x))).ToList();
         }
 
         private List<string> GetBlocks(string cipher)

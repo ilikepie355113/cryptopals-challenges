@@ -6,15 +6,24 @@ namespace Cryptopals.Challenges.Set1
 {
     public class Challenge7
     {
-        public string SolveChallenge(string input, string key)
+        private readonly string _cipherText;
+        private readonly string _key;
+
+        public Challenge7(string cipherText, string key)
         {
-            return AESDecrypt(input, key);
+            _cipherText = cipherText;
+            _key = key;
         }
 
-        private string AESDecrypt(string cipherText, string key)
+        public string SolveChallenge()
         {
-            byte[] cipherBytes = Convert.FromBase64String(cipherText);
-            byte[] output = new byte[cipherText.Length];
+            return AESDecrypt();
+        }
+
+        private string AESDecrypt()
+        {
+            byte[] cipherBytes = Convert.FromBase64String(_cipherText);
+            byte[] output = new byte[_cipherText.Length];
 
             using (AesManaged aes = new AesManaged())
             {
@@ -22,7 +31,7 @@ namespace Cryptopals.Challenges.Set1
                 aes.BlockSize = 128;
                 aes.KeySize = 128;
                 aes.Padding = PaddingMode.None;
-                aes.Key = key.ToByteArray();
+                aes.Key = _key.ToByteArray();
 
                 ICryptoTransform decryptor = aes.CreateDecryptor();
                 decryptor.TransformBlock(cipherBytes, 0, cipherBytes.Length, output, 0);

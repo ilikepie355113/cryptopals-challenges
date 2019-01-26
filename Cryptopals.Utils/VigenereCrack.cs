@@ -72,7 +72,7 @@ namespace Cryptopals.Utils
 
         }
 
-        private static List<byte[]> GetSingleByteKeys(int minKeyVal, int maxKeyVal, int keyLength)
+        private List<byte[]> GetSingleByteKeys(int minKeyVal, int maxKeyVal, int keyLength)
         {
             var bytes = new List<byte[]>();
 
@@ -84,7 +84,7 @@ namespace Cryptopals.Utils
             return bytes;
         }
 
-        private static int HammingDistance(byte[] b1, byte[] b2)
+        private int HammingDistance(byte[] b1, byte[] b2)
         {
             if (b1.Length != b2.Length) throw new ArgumentException("Arrays must be equal in length");
 
@@ -99,7 +99,7 @@ namespace Cryptopals.Utils
             return distance;
         }
 
-        private static int HammingDistance(byte b1, byte b2)
+        private int HammingDistance(byte b1, byte b2)
         {
             int distance = 0;
 

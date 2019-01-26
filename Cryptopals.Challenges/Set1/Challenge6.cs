@@ -4,11 +4,17 @@ namespace Cryptopals.Challenges.Set1
 {
     public class Challenge6
     {
-        public string SolveChallenge(string input)
-        {
-            CipherText cipherText = new CipherText(input, CipherTextFormat.BASE64);
+        private readonly CipherText _cipherText;
+        private readonly ICracker _cracker;
 
-            return cipherText.Crack(new VigenereCrack()).DecipheredText;
+        public Challenge6(string cipherText, ICracker cracker)
+        {
+            _cipherText = new CipherText(cipherText, CipherTextFormat.BASE64);
+            _cracker = cracker;
+        }
+        public string SolveChallenge()
+        {
+            return _cipherText.Crack(_cracker).DecipheredText;
         }
     }
 }
