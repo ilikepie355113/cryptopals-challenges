@@ -12,7 +12,7 @@ namespace Cryptopals.Tests.Set1
             string hex2 = "686974207468652062756c6c277320657965";
             string expected = "746865206b696420646f6e277420706c6179";
 
-            string actual = new Challenge2().SolveChallenge(hex1, hex2);
+            string actual = new Challenge2(hex1, hex2).SolveChallenge();
 
             Assert.Equal(expected, actual);
         }
