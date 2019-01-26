@@ -13,7 +13,7 @@ namespace Cryptopals.Utils
             if (keyLength == 0) keyLength = FindKeyLength(cipherText.Bytes);
             string key = GetKey(cipherText.Bytes, keyLength);
 
-            return new DecipherText(cipherText, key, new VigenereDecrypt());
+            return new DecipherText(cipherText, key, new VigenerCipher());
         }
 
         // need to normalize, and add error checking and bounds for keysizes if implenting outside of specific challenge.
@@ -62,7 +62,7 @@ namespace Cryptopals.Utils
 
             foreach (char key in keys)
             {
-                var dt = new DecipherText(new CipherText(cipherBytes), key.ToString(), new VigenereDecrypt());
+                var dt = new DecipherText(new CipherText(cipherBytes), key.ToString(), new VigenerCipher());
                 decipheredTexts.Add(dt);
             }
 
