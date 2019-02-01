@@ -23,7 +23,7 @@ namespace Cryptopals.Challenges.Set1
         private string AESDecrypt()
         {
             byte[] cipherBytes = Convert.FromBase64String(_cipherText);
-            byte[] output = new byte[_cipherText.Length];
+            byte[] output = new byte[cipherBytes.Length];
 
             using (AesManaged aes = new AesManaged())
             {
