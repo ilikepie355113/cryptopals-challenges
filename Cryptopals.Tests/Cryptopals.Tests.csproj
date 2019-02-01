@@ -73,6 +73,7 @@
     <Compile Include="Set1\Challenge5Tests.cs" />
     <Compile Include="Set1\Challenge7Tests.cs" />
     <Compile Include="Set1\Challenge8Tests.cs" />
+    <Compile Include="Set2\Challenge9Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cryptopals.Challenges\Cryptopals.Challenges.csproj">
@@ -113,6 +114,7 @@
     <Content Include="Resources\challenge6expected.txt" />
     <Content Include="Resources\challenge7expected.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
