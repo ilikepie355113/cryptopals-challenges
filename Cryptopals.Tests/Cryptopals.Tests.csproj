@@ -73,6 +73,7 @@
     <Compile Include="Set1\Challenge5Tests.cs" />
     <Compile Include="Set1\Challenge7Tests.cs" />
     <Compile Include="Set1\Challenge8Tests.cs" />
+    <Compile Include="Set2\Challenge10Tests.cs" />
     <Compile Include="Set2\Challenge9Tests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +112,7 @@
     <Content Include="..\Cryptopals.Challenges\Resources\challenge8.txt">
       <Link>Resources\challenge8.txt</Link>
     </Content>
+    <Content Include="Resources\challenge10.txt" />
     <Content Include="Resources\challenge6expected.txt" />
     <Content Include="Resources\challenge7expected.txt" />
   </ItemGroup>

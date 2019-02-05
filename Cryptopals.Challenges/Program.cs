@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cryptopals.Utils;
+using Cryptopals.Challenges.Set2;
 
 namespace Cryptopals.Challenges
 {
@@ -12,8 +13,6 @@ namespace Cryptopals.Challenges
         public static void Main(string[] args)
         {
 
-
-            Console.ReadLine();
         }
     }
 }
