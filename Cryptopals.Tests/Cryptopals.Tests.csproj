@@ -74,6 +74,7 @@
     <Compile Include="Set1\Challenge7Tests.cs" />
     <Compile Include="Set1\Challenge8Tests.cs" />
     <Compile Include="Set2\Challenge10Tests.cs" />
+    <Compile Include="Set2\Challenge11Tests.cs" />
     <Compile Include="Set2\Challenge9Tests.cs" />
   </ItemGroup>
   <ItemGroup>

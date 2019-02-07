@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AESCipher.cs" />
     <Compile Include="CipherText.cs" />
     <Compile Include="DecipherText.cs" />
     <Compile Include="Extensions.cs" />
