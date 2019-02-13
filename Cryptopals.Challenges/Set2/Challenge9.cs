@@ -20,21 +20,7 @@ namespace Cryptopals.Challenges.Set2
 
         public string SolveChallenge()
         {
-            return PadBlock(_input.ToByteArray(), _size).ToASCIIString();
-        }
-
-        private byte[] PadBlock(byte[] block, int size)
-        {
-            byte[] paddedBlock = new byte[size];
-            int paddingLength = size - block.Length;
-            block.CopyTo(paddedBlock, 0);
-
-            for (int i = 1; i <= paddingLength; i++)
-            {
-                paddedBlock[size - i] = (byte) paddingLength;
-            }
-
-            return paddedBlock;
+            return new PKCS7(_size).AddPadding(_input.ToByteArray()).ToASCIIString();
         }
     }
 }

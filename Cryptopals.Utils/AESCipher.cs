@@ -7,9 +7,33 @@ using System.Security.Cryptography;
 
 namespace Cryptopals.Utils
 {
+    public class PKCS7
+    {
+        public int BlockSize { get; }
+
+        public PKCS7(int blockSize)
+        {
+            BlockSize = blockSize;
+        }
+
+        public byte[] AddPadding(byte[] message)
+        {
+            int value = BlockSize - message.Length % BlockSize;
+            var padding = Enumerable.Repeat((byte) value, value);
+
+            return message.Concat(padding).ToArray();
+        }
+
+        public byte[] RemovePadding(byte[] message)
+        {
+            return message.Take(message.Length - message.Last()).ToArray();
+        }
+    }
+
     public class AESCipher : ICryptography
     {
         private byte[] _key;
+        private const int BLOCK_SIZE = 128; // constant for all challenges so far, may need to change to property later
 
         public CipherMode Mode { get; set; } 
         public PaddingMode Padding {get; set; }
@@ -20,27 +44,32 @@ namespace Cryptopals.Utils
             set => _key = value.ToByteArray(); 
         }
 
-        public AESCipher(CipherMode mode, PaddingMode padding, byte[] iv)
+        public AESCipher(CipherMode mode, PaddingMode padding, byte[] iv = null)
         {
             Mode = mode;
             Padding = padding;
-            IV = iv;
+            IV = iv ?? (new byte[16]);
         }
 
         public string Encrypt(PlainText text, string key, CipherTextFormat format)
         {
-            throw new NotImplementedException();
+            Key = key;
+            byte[] messageBytes = (Padding == PaddingMode.PKCS7) ? new PKCS7(BLOCK_SIZE / 8).AddPadding(text.Bytes) : text.Bytes; 
+            byte[] cipherBytes = (Mode == CipherMode.CBC) ? CBCEncryptByHand(messageBytes) : ECBEncrypt(messageBytes);
+
+            return (format == CipherTextFormat.BASE64) ? Convert.ToBase64String(cipherBytes) : cipherBytes.ToHexString();
         }
 
         public string Decrypt(CipherText cipherText, string key)
         {
-            throw new NotImplementedException();
+            Key = key;
+            byte[] decrypted = (Mode == CipherMode.CBC) ? CBCDecryptByHand(cipherText.Bytes) : ECBDecrypt(cipherText.Bytes);
+
+            return (Padding == PaddingMode.PKCS7) ? new PKCS7(BLOCK_SIZE / 8).RemovePadding(decrypted).ToASCIIString() : decrypted.ToASCIIString();
         }
 
-        private string CBCEncryptByHand(string plainText)
+        private byte[] CBCEncryptByHand(byte[] plainBytes)
         {
-
-            byte[] plainBytes = Convert.FromBase64String(plainText);
             List<byte> cipherBytes = new List<byte>(plainBytes.Length);
 
             byte[] previousBlock = (byte[]) IV.Clone();
@@ -53,14 +82,11 @@ namespace Cryptopals.Utils
                 previousBlock = encrypted;
             }
 
-            // TODO need to make this correct for chosen format
-            return cipherBytes.ToArray().ToASCIIString();
+            return cipherBytes.ToArray();
         }
 
-        private string CBCDecryptByHand(string cipherText)
+        private byte[] CBCDecryptByHand(byte[] cipherBytes)
         {
-
-            byte[] cipherBytes = Convert.FromBase64String(cipherText);
             List<byte> plainBytes = new List<byte>(cipherBytes.Length);
 
             byte[] previousBlock = (byte[]) IV.Clone();
@@ -72,16 +98,42 @@ namespace Cryptopals.Utils
                 previousBlock = block;
             }
 
-            return plainBytes.ToArray().ToASCIIString();
+            return plainBytes.ToArray();
+        }
+
+        private byte[] ECBEncrypt(byte[] plainBytes)
+        {
+            byte[] encrypted = new byte[plainBytes.Length];
+
+            using (AesManaged aes = InitializeAESManaged())
+            {
+                ICryptoTransform encryptor = aes.CreateEncryptor();
+                encryptor.TransformBlock(plainBytes, 0, plainBytes.Length, encrypted, 0);
+            }
+
+            return encrypted;
+        }
+
+        private byte[] ECBDecrypt(byte[] cipherBytes)
+        {
+            byte[] decrypted = new byte[cipherBytes.Length];
+
+            using (AesManaged aes = InitializeAESManaged())
+            {
+                ICryptoTransform decryptor = aes.CreateDecryptor();
+                decryptor.TransformBlock(cipherBytes, 0, cipherBytes.Length, decrypted, 0);
+            }
+
+            return decrypted;
         }
 
         private byte[] EncryptSingleBlockECB(byte[] block)
         {
             byte[] encrypted;
 
-            using (AesManaged aes = InitalizeAESManaged())
+            using (AesManaged aes = InitializeAESManaged())
             {
-                ICryptoTransform encryptor = _aes.CreateEncryptor();
+                ICryptoTransform encryptor = aes.CreateEncryptor();
                 encrypted = encryptor.TransformFinalBlock(block, 0, 16);
             }
 
@@ -92,7 +144,7 @@ namespace Cryptopals.Utils
         {
             byte[] decrypted;
 
-            using (AesManaged aes = InitalizeAESManaged())
+            using (AesManaged aes = InitializeAESManaged())
             {
                 ICryptoTransform decryptor = aes.CreateDecryptor();
                 decrypted = decryptor.TransformFinalBlock(block, 0, 16);
@@ -101,16 +153,16 @@ namespace Cryptopals.Utils
             return decrypted;
         }
 
-        private AesManaged InitalizeAESManaged()
+        private AesManaged InitializeAESManaged()
         {
             AesManaged aes = new AesManaged
             {
                 Mode = Mode,
-                BlockSize = 128,
-                KeySize = 128,
+                BlockSize = BLOCK_SIZE,
+                KeySize = BLOCK_SIZE,
                 Padding = Padding,
                 Key = _key,
-                IV = _iv
+                IV = IV
             };
 
             return aes;
