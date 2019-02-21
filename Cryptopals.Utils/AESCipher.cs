@@ -76,6 +76,7 @@ namespace Cryptopals.Utils
 
             for (int i = 0; i < plainBytes.Length; i += 16)
             {
+                
                 byte[] block = plainBytes.Skip(i).Take(16).ToArray().XorWith(previousBlock);
                 byte[] encrypted = EncryptSingleBlockECB(block);
                 cipherBytes.AddRange(encrypted);
@@ -137,7 +138,7 @@ namespace Cryptopals.Utils
                 encrypted = encryptor.TransformFinalBlock(block, 0, 16);
             }
 
-            return encrypted;
+            return encrypted.Take(16).ToArray(); // Strips padding in case of PCKS7 mode.
         }
 
         private byte[] DecryptSingleBlockECB(byte[] block)
