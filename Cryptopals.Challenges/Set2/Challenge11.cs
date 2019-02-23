@@ -3,28 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using Cryptopals.Utils;
 
 namespace Cryptopals.Challenges.Set2
 {
     public class Challenge11
     {
+        private readonly string _plainText;
+        public CipherMode Mode { get; private set; }
 
         // The key to this challenge is that we control the plaintext into the oracle. So if we send a plaintext
         // of sufficient length we can guaruntee that two identical blocks are encrypted and that is all it takes
         // for us to detect if the encryption was done in ECB as ECB is deterministic
-        public string EncryptionOracle(string plainText)
+        public Challenge11(string plainText)
         {
-            PlainText message = new PlainText(RandomizeMessageLength(plainText));
+            _plainText = plainText;
+        }
+
+        public CipherMode SolveChallenge()
+        {
+            return DetectionOracle(EncryptionOracle());
+        }
+
+        public string EncryptionOracle()
+        {
+            PlainText message = new PlainText(RandomizeMessageLength(_plainText));
             string randKey = GetRandomKey(16).ToASCIIString();
 
             Random random = new Random();
-            CipherMode mode = (random.Next(2) == 0) ? CipherMode.ECB : CipherMode.CBC;
-            // DEBUG:
-            Console.WriteLine((mode == CipherMode.ECB) ? "ECB" : "CBC");
+            Mode = (random.Next(2) == 0) ? CipherMode.ECB : CipherMode.CBC;
 
-            AESCipher aes = new AESCipher(mode, PaddingMode.PKCS7);
+            AESCipher aes = new AESCipher(Mode, PaddingMode.PKCS7);
 
             return aes.Encrypt(message, randKey, CipherTextFormat.HEXADECIMAL);
         }

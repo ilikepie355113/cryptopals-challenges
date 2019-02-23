@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cryptopals.Utils;
 using Cryptopals.Challenges.Set2;
+using System.Security.Cryptography;
 
 namespace Cryptopals.Challenges
 {
